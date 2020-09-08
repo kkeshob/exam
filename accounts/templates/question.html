@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block 'body' %}
+<div class="mynav">
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="text">Name-{{request.user.name}}</div>
+        </div>
+        <div class="col-lg-2">
+            <div class="text">Roll Number {{request.user.roll}}</div>
+        </div>
+        <div class="col-lg-2"><div class="text">Course-{{request.user.course}},Paper-{{request.session.paper}} </div></div>
+        <div class="col-lg-3"><div class="text"> Want To Leave the Exam <a href="{% url 'student_home' %}">Click Here</a> </div></div>
+        <div class="col-lg-3">
+            <script>
+                var x = setInterval(function() {
+                        distance=sessionStorage.getItem('distance')
+                        distance=distance-1000
+                        sessionStorage.setItem('distance',distance);        
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+                    if (distance < 300000) {
+                        
+                        document.getElementById("demo").style.color="red";
+                     }
+                     if(distance<0){
+                        clearInterval(x);
+                        window.location.assign("{% url 'student_home'%}")
+                     }
+                    }, 1000);
+                </script>
+            <div class="text"> Time :  <span id=demo></span></div></div>
+    </div>
+
+</div>
+<div class="q_body">
+    <div class="row">
+        <form action="" method="POST">{% csrf_token%}
+        <div class="col-lg-8">
+            {{request.session.msg}}
+            <div class="row" style="height: 500px;">
+                <div class="q_box">
+                    {{qs.qs_no}}.&emsp;&emsp;
+                    {{qs.questions}}  
+                </div>
+                <div class="op_box">
+                    {{msg}}
+                    <div class="row">
+                        <div class="col-lg-6"><div class="op">{{ansfrm.ans.0}}&emsp;&emsp; {{qs.option_a}}</div></div>
+                        <div class="col-lg-6"><div class="op">{{ansfrm.ans.1}}&emsp;&emsp;{{qs.option_b}}</div></div>
+                   
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6"><div class="op">{{ansfrm.ans.2}}&emsp;&emsp;{{qs.option_c}}</div></div>
+                        <div class="col-lg-6"><div class="op">{{ansfrm.ans.3}}&emsp;&emsp;{{qs.option_d}}</div></div>
+                   
+                    </div>
+                   
+                    
+                    
+                    
+                    
+                </div>
+                
+                
+                
+                
+                  
+            </div>
+            <div class="row"style="height: 150px;">
+            <div class="col-lg-4">
+                <a href="{% url 'exam_home' qs.qs_no|add:-1 %}" class="btn btn-primary"> < PREVIOUS</a>
+            </div>
+            <div class="col-lg-4">
+                <button  type="submit" class="btn btn-primary">SAVE</button>
+            </div>
+            <div class="col-lg-4">
+                
+                <a href="{% url 'exam_home' qs.qs_no|add:1 %}" class="btn btn-primary">NEXT > </a>
+            </div>
+            
+                
+        </div>
+    </form>
+        </div>
+        <div class="col-lg-4 bg">
+            <div class="row" style="float: left; margin-top: 20px; ">
+                {% for question in questions %}
+                <div class="col-lg-3" style="margin-top: 30px; margin-left: 20px;"> <a href="{% url 'exam_home' question.qs_no %}" class="btn btn-danger">{{question.qs_no}}</a> </div>
+               {% endfor %}
+            </div>
+            
+            
+            
+        </div>
+    </div>
+
+</div>
+{% endblock %}

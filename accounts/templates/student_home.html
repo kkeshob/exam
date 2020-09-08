@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block 'body' %}
+<script>
+    distance=20*60*1000
+                sessionStorage.setItem('distance',distance);
+</script>
+       <div class="row">
+           <div class="col-lg-3">
+               
+           </div>
+           <div class="col-lg-6">
+            <div class="row " style="margin-top: 100px;">
+                <div class="col-3">
+                    <h1>ACTCEJNCLD ONLINE TEST EXAM</h1>
+                </div>
+                <div class="col-3">
+                    <div class="row">
+                        <div class="col-6">Total Marks:30</div>
+                        <div class="col-6">Time:20 Minutes</div>
+                        
+                    </div>
+                </div>
+                <div class="col-3">
+                    <h4>Welcome: {{request.user.name}}</h4>
+                    <h2>{{msg}}</h2>
+                </div>
+                <div class=row>
+                    <form id="registration" class="form-inline" method="POST" action="" >{% csrf_token %}
+                <div class="col-6">
+                    {{request.user.course}}
+                    {{form.paper}}    
+                </div><br><br>
+                <div class="col-6">
+                    <button class="btn btn-primary" style="width: 30%; height: 100px; line-height: 100px;" type='submit'><h3>Enter To Exam</h3></button>
+                </div>
+            </form>
+                </div>
+              
+                <div class="col-3">
+                    <h4><a href="{% url 'logout' %}" style="color: black;" >Want to Exit Click Here</a></h4> 
+                </div>
+            </div>
+           </div>
+           <div class="col-lg-3"></div>
+       </div>
+
+{% endblock %}

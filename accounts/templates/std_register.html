@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'body' %}
+            <div class="lock-wrapper">                
+                <div class="panel lock-box">
+                    <div class="center"> <img alt="" src="{% static 'user.png' %}" class="img-circle"/> </div>
+                    <h4> Hello Student</h4>
+                    <p class="text-center">Please Register To Attend Exam</p>
+                    <div class="row">
+                        <form id="registration" class="form-inline" action="" method="POST">{% csrf_token %}
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <div id="demo-error-container"></div>
+                            </div>
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <div class="text-left">
+                                    <label for="signupInputName" class="control-label">Select Course</label>
+                                    {{form.course}}    
+                                </div>
+                            </div>
+
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <div class="text-left">
+                                    <label for="signupInputName" class="control-label">Roll Number</label>
+                                    {{form.roll}}
+                                </div>
+                            </div>
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <div class="text-left">
+                                    <label for="signupInputName" class="control-label">Phone</label>
+                                    {{form.phone}}    
+                                </div>
+                            </div>
+                            
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <div class="text-left">
+                                    <label for="signupInputName" class="control-label">Full Name</label>
+                                    {{form.name}}    
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-block btn-primary">
+                            Register
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <div class="registration"> Already registered! <a href="{% url 'login' %}"> <span class="text-primary"> Please Login Here </span> </a> </div>
+            </div>
+{% endblock%}

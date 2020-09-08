@@ -1,0 +1,47 @@
+{% extends 'exam_admin_base.html' %}
+{% block 'content' %}
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Row selection (single row)</h3>
+    </div>
+    <div class="panel-body">
+        <table id="datatable1" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                   
+                    <th class="min-tablet">Course</th>
+                    <th class="min-tablet">Paper</th>
+                    <th class="min-tablet">Question No.</th>
+                    <th class="min-tablet">Question</th>
+                    <th class="min-tablet">Answer</th>
+                    <th class="min-desktop">Option A</th>
+                    <th class="min-desktop">Option B</th>
+                    <th class="min-desktop">Option C</th>
+                    <th class="min-desktop">Option D</th>
+                    <th class="min-desktop">Edit</th>
+
+                </tr>
+            </thead>
+            <tbody>
+               {% for qs in qts %}
+                <tr>
+                    <td>{{qs.course}}</td>
+                    <td>{{qs.paper}}</td>
+                    <td>{{qs.qs_no}}</td>
+                    <td>{{qs.questions}}</td>
+                    <td>{{qs.answers}}</td>
+                    <td>{{qs.option_a}}</td>
+                    <td>{{qs.option_b}}</td>
+                    <td>{{qs.option_c}}</td>
+                    <td>{{qs.option_d}}</td>
+                    <td><a href="{% url 'edit_questions' qs.id %}" class="btn btn-info">Edit</a><td><a href="{% url 'delete_questions' qs.id %}" class="btn btn-danger">Delete</a>
+                </tr>
+                {% endfor %}
+    </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+$('#datatable1').dataTable();
+</script>
+{% endblock %}

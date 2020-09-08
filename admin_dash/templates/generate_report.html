@@ -1,0 +1,11 @@
+{% extends 'exam_admin_base.html' %}
+{% block 'content' %}
+<div class="box1">
+    {{msg}}
+    <h3>Enter Date To Generate Report</h3>
+<form action="" method="POST">{% csrf_token%}
+    <input type="date" name="date" id="">
+    <button type="submit" class="btn btn primary">Generate</button>
+</form>
+</div>
+{% endblock %}

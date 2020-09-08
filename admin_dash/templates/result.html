@@ -1,0 +1,36 @@
+{% extends 'exam_admin_base.html' %}
+{% block 'content' %}
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Results</h3>
+    </div>
+    <div class="panel-body">
+        <table id="datatable1" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th class="min-tablet">Exam Name</th>
+                    <th class="min-tablet">Course Paper</th>
+                    <th class="min-tablet">Total Marks</th>
+                    <th class="min-tablet">Marks</th>
+                   
+                    
+                </tr>
+            </thead>
+            <tbody>
+               {% for exam in exams %}
+                <tr>
+                    <td>Exam{{forloop.counter}}</td>
+                    <td>{{exam.course}} - {{exam.paper}}</td>
+                   
+                    <td>{{exam.total_marks}}</td>
+                    <td>{{exam.marks}}</td>
+                </tr>
+                {% endfor %}
+    </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+$('#datatable1').dataTable();
+</script>
+{% endblock %}
